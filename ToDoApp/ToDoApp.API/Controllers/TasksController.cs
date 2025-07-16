@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 using ToDoApp.Application.Interfaces;
 
 namespace ToDoApp.API.Controllers
@@ -33,11 +34,17 @@ namespace ToDoApp.API.Controllers
             return Ok(result);
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetTaskById( int id)
-        //{
-        //    return Ok();
-        //}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTaskById(int id, CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Process started: {Method}", nameof(GetTaskById));
+
+            var result = await _taskService.GetTaskItemById(id, cancellationToken);
+
+            _logger.LogInformation("Process ended: {Method}", nameof(GetTaskById));
+
+            return Ok(result);
+        }
 
         //[HttpPost]
         //public async Task <IActionResult> CreateTask([FromBody] CreateTaskDto createTask)

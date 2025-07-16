@@ -16,8 +16,17 @@ public class TaskItemRepository : ITaskItemRepository
 
     public async Task<IEnumerable<TaskItem>> GetAllTaskItems(CancellationToken cancellationToken)
     {
-        var taskItems = await _toDoDbContext.TaskItems.ToListAsync(cancellationToken);
+        var result = await _toDoDbContext.TaskItems.ToListAsync(cancellationToken);
 
-        return taskItems;
+        return result;
+    }
+
+    public async Task<TaskItem?> GetTaskItemById(int id, CancellationToken cancellationToken)
+    {
+        var result = await _toDoDbContext.TaskItems
+            .Where(item => item.Id == id)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        return result;
     }
 }
