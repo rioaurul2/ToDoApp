@@ -1,4 +1,5 @@
 
+using ToDoApp.API.Middlewares;
 using ToDoApp.Application.Extension;
 using ToDoApp.Infrastructure.Extension;
 
@@ -11,6 +12,8 @@ namespace ToDoApp.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.          
+
+            builder.Services.AddTransient<ErrorHandlingMiddleware>();
 
             builder.Services.AddControllers();
             // service colection extensions
@@ -34,6 +37,7 @@ namespace ToDoApp.API
 
             app.UseAuthorization();
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.MapControllers();
 
