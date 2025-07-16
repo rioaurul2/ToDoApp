@@ -16,7 +16,7 @@ public class TaskItemRepository : ITaskItemRepository
 
     public async Task<IEnumerable<TaskItem>> GetAllTaskItems(CancellationToken cancellationToken)
     {
-        var taskItems = await _toDoDbContext.TaskItems.ToListAsync();
+        var taskItems = await _toDoDbContext.TaskItems.ToListAsync(cancellationToken);
 
         return taskItems;
     }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ToDoApp.API.DTOs;
 using ToDoApp.Application.Interfaces;
 
 namespace ToDoApp.API.Controllers
@@ -9,21 +8,27 @@ namespace ToDoApp.API.Controllers
     public class TasksController : ControllerBase
     {
         private readonly ITaskService _taskService;
+        private readonly ILogger<TasksController> _logger;
 
-        public TasksController(ITaskService taskService)
+        public TasksController(ITaskService taskService, ILogger<TasksController> logger)
         {
             _taskService = taskService;
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTasks()
+        public async Task<IActionResult> GetAllTasks(CancellationToken cancellationToken)
         {
-            var result = await _taskService.GetAllTaskItems(default);
+            _logger.LogInformation("Process started: GetAllTasks");
+
+            var result = await _taskService.GetAllTaskItems(cancellationToken);
 
             if (!result.Any())
             {
                 return NoContent();
             }
+
+            _logger.LogInformation("Process ended: GetAllTasks. Returned {Count} items", result.Count());
 
             return Ok(result);
         }

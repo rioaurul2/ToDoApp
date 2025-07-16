@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using ToDoApp.Domain.Entities;
+﻿using ToDoApp.Domain.Entities;
 
 namespace ToDoApp.Application.Interfaces;
 
