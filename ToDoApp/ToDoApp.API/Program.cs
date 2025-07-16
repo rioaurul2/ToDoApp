@@ -1,6 +1,6 @@
 
-using Microsoft.EntityFrameworkCore;
-using ToDoApp.Infrastructure.Context;
+using ToDoApp.Application.Extension;
+using ToDoApp.Infrastructure.Extension;
 
 namespace ToDoApp.API
 {
@@ -10,17 +10,16 @@ namespace ToDoApp.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add services to the container.          
 
             builder.Services.AddControllers();
+            // service colection extensions
+            builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddApplication();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            //Application Context
-            builder.Services.AddDbContext<ToDoDbContext>( options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnectionString"))
-            );
 
             var app = builder.Build();
 
