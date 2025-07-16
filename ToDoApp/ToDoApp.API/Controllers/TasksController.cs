@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading;
+using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Interfaces;
 
 namespace ToDoApp.API.Controllers
@@ -18,7 +19,7 @@ namespace ToDoApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTasks(CancellationToken cancellationToken)
+        public async Task<ActionResult<List<TaskItemDto>>> GetAllTasks(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Process started: GetAllTasks");
 
@@ -35,13 +36,13 @@ namespace ToDoApp.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTaskById(int id, CancellationToken cancellationToken)
+        public async Task<ActionResult<TaskItemDto>> GetTaskById(int id, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Process started: {Method}", nameof(GetTaskById));
 
             var result = await _taskService.GetTaskItemById(id, cancellationToken);
 
-            _logger.LogInformation("Process ended: {Method}", nameof(GetTaskById));
+            _logger.LogInformation("Process ended: {Method} for TaskId={TaskId}", nameof(GetTaskById), id);
 
             return Ok(result);
         }

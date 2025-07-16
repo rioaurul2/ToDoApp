@@ -8,5 +8,5 @@ public class User
     public string PasswordHash { get; set; } = default!;
     public string PasswordSalt { get; set; } = default!;
     public string UserName { get; set; } = default!;
-    public List<TaskItem> UserTasks { get; set; } = new();
+    public List<TaskItem> UserTasks { get; set; } = [];
 }
