@@ -13,7 +13,6 @@ public class TaskItemRepository : ITaskItemRepository
     {
         _toDoDbContext = toDoDbContex;
     }
-
     public async Task<IEnumerable<TaskItem>> GetAllTaskItems(CancellationToken cancellationToken)
     {
         var result = await _toDoDbContext.TaskItems.ToListAsync(cancellationToken);
@@ -28,5 +27,12 @@ public class TaskItemRepository : ITaskItemRepository
             .FirstOrDefaultAsync(cancellationToken);
 
         return result;
+    }
+
+    public async Task CreateTaskItem(TaskItem item, CancellationToken cancellationToken)
+    {
+        await _toDoDbContext.AddAsync(item, cancellationToken);
+
+        await _toDoDbContext.SaveChangesAsync(cancellationToken);
     }
 }

@@ -1,4 +1,5 @@
-﻿using ToDoApp.Application.DTOs;
+﻿using ToDoApp.API.DTOs;
+using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Interfaces;
 using ToDoApp.Domain.Entities;
 
@@ -36,5 +37,18 @@ public class TaskItemsMapperService : ITaskItemsMapperService
             UserId = taskItem.UserId
         };
         return resultDto;
+    }
+
+    public TaskItem MapDtoToTaskItem(CreateTaskItemDto taskItemDto)
+    {
+        var taskItem = new TaskItem()
+        {
+            Name = taskItemDto.Name,
+            //UserId = //nu se face post pana nu avem si useri, doar useri authenticati pot face post
+            Description = taskItemDto.Description,
+            DataOraPlanificare = taskItemDto.DataOraPlanificare
+        };
+
+        return taskItem;
     }
 }

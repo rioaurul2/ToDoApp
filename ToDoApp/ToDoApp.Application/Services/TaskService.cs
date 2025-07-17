@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using ToDoApp.API.DTOs;
 using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Exceptions;
 using ToDoApp.Application.Interfaces;
-using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces;
 
 namespace ToDoApp.Application.Services
@@ -62,6 +62,25 @@ namespace ToDoApp.Application.Services
                 _logger.LogInformation($"Process ended without issues");
 
                 return resultDto;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Process ended with issues");
+                throw;
+            }
+        }
+
+        public async Task CreateTaskItem(CreateTaskItemDto taskItemDto, CancellationToken cancellationToken)
+        {
+            try
+            {
+                _logger.LogInformation("Process started: {Service}.{Method}", nameof(TaskService), nameof(CreateTaskItem));
+
+                var taskItem = _taskItemsMapperService.MapDtoToTaskItem(taskItemDto);
+
+                await _taskItemRepository.CreateTaskItem(taskItem, cancellationToken);
+
+                _logger.LogInformation($"Process ended without issues");
             }
             catch (Exception ex)
             {

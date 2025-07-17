@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading;
+using ToDoApp.API.DTOs;
 using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Interfaces;
 
@@ -47,10 +48,16 @@ namespace ToDoApp.API.Controllers
             return Ok(result);
         }
 
-        //[HttpPost]
-        //public async Task <IActionResult> CreateTask([FromBody] CreateTaskDto createTask)
-        //{
-        //    return Ok();
-        //}
+        [HttpPost]
+        public async Task<ActionResult<CreateTaskItemDto>> CreateTask([FromBody] CreateTaskItemDto createTask, CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Process started: {Method}", nameof(CreateTask));
+
+            await _taskService.CreateTaskItem(createTask, cancellationToken);
+
+            _logger.LogInformation("Process ended: {Method} ", nameof(CreateTask));
+
+            return Ok(createTask);
+        }
     }
 }
