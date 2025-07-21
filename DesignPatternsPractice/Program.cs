@@ -1,4 +1,5 @@
-﻿using DesignPatternsPractice.Behavioral.State;
+﻿using DesignPatternsPractice.Behavioral.ChainOfResponsibility;
+using DesignPatternsPractice.Behavioral.State;
 using DesignPatternsPractice.Behavioral.TemplateMethod;
 using DesignPatternsPractice.Creational.Builder;
 using DesignPatternsPractice.Structural.Adapter;
@@ -185,6 +186,23 @@ namespace DesignPatternsPractice
 
             OrderProcessor inStore = new InStoreOrderProcessor();
             inStore.ProcessOrder();
+
+            //Chain of responsability pattern
+
+            var teamLeader = new TeamLeader();
+            var manager = new Manager();
+            var CORdirector = new Director();
+
+            teamLeader.SetNext(manager);
+            manager.SetNext(CORdirector);
+
+            var request1 = new ExpenseRequest("Mouse nou", 300);
+            var request2 = new ExpenseRequest("Licență Visual Studio", 1200);
+            var request3 = new ExpenseRequest("Laptop performant", 8500);
+
+            teamLeader.Approve(request1);
+            teamLeader.Approve(request2);
+            teamLeader.Approve(request3);
 
         }
     }
