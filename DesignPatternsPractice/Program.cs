@@ -1,4 +1,5 @@
-﻿using DesignPatternsPractice.Structural.Adapter;
+﻿using DesignPatternsPractice.Creational.Builder;
+using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
 
 
@@ -74,51 +75,72 @@ namespace DesignPatternsPractice
 
             //    processor.ExecutePayment(amount);
 
-            //decorator example
+            ////decorator example
 
-            var simple = new SimpleMessage();
-            Console.WriteLine(simple.GetContent());
+            //var simple = new SimpleMessage();
+            //Console.WriteLine(simple.GetContent());
 
-            var encrypted = new EncryptedMessage(simple);
-            Console.WriteLine(encrypted.GetContent());
+            //var encrypted = new EncryptedMessage(simple);
+            //Console.WriteLine(encrypted.GetContent());
 
-            //Adapter example
+            ////Adapter example
 
-            IOldWeatherProvider weather = new WeatherAdapter(new NewWeatherService());
-            Console.WriteLine(weather.GetWeather()); // Output: 24°C and sunny
+            //IOldWeatherProvider weather = new WeatherAdapter(new NewWeatherService());
+            //Console.WriteLine(weather.GetWeather()); // Output: 24°C and sunny
 
-            //Command example
+            ////Command example
 
-            var light = new Light();
+            //var light = new Light();
 
-            var turnOn = new TurnOnLightCommand(light);
-            var turnOff = new TurnOffLightCommand(light);
+            //var turnOn = new TurnOnLightCommand(light);
+            //var turnOff = new TurnOffLightCommand(light);
 
-            var remote = new RemoteControl();
+            //var remote = new RemoteControl();
 
-            remote.SetCommand(turnOn);
-            remote.PressButton(); // Output: Light is ON
+            //remote.SetCommand(turnOn);
+            //remote.PressButton(); // Output: Light is ON
 
-            remote.SetCommand(turnOff);
-            remote.PressButton(); // Output: Light is OFF
+            //remote.SetCommand(turnOff);
+            //remote.PressButton(); // Output: Light is OFF
 
-            //Observer Pattern
+            ////Observer Pattern
 
-            var station = new WeatherStation();
+            //var station = new WeatherStation();
 
-            var phone1 = new PhoneDisplay("Phone1");
-            var phone2 = new PhoneDisplay("Phone2");
+            //var phone1 = new PhoneDisplay("Phone1");
+            //var phone2 = new PhoneDisplay("Phone2");
 
-            station.Attach(phone1);
-            station.Attach(phone2);
+            //station.Attach(phone1);
+            //station.Attach(phone2);
 
-            station.SetTemperature(23.5f);
-            // Output: Phone1 Display: Temperature updated to 23.5°C
-            //         Phone2 Display: Temperature updated to 23.5°C
+            //station.SetTemperature(23.5f);
+            //// Output: Phone1 Display: Temperature updated to 23.5°C
+            ////         Phone2 Display: Temperature updated to 23.5°C
 
-            station.Detach(phone2);
-            station.SetTemperature(26.0f);
-            // Output: Phone1 Display: Temperature updated to 26°C
+            //station.Detach(phone2);
+            //station.SetTemperature(26.0f);
+            //// Output: Phone1 Display: Temperature updated to 26°C
+            ///
+
+            //Builder Pattern
+
+            var builder = new PizzaBuilder();
+            var director = new PizzaDirector();
+
+            var margherita = director.BuildMargherita(builder);
+            Console.WriteLine(margherita);
+
+            var pepperoni = director.BuildPepperoni(new PizzaBuilder());
+            Console.WriteLine(pepperoni);
+
+            // Sau construiești tu direct:
+            var customPizza = new PizzaBuilder()
+                .WithSize("XXL")
+                .WithCheese()
+                .AddToppings(["bacon", "ceapa"])
+                .Build();
+
+            Console.WriteLine(customPizza);
 
         }
     }
