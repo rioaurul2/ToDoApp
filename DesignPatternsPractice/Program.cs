@@ -1,4 +1,5 @@
 ﻿using DesignPatternsPractice.Behavioral.State;
+using DesignPatternsPractice.Behavioral.TemplateMethod;
 using DesignPatternsPractice.Creational.Builder;
 using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
@@ -172,9 +173,18 @@ namespace DesignPatternsPractice
             atm.WithdrawCash();
             atm.InsertCard();
             atm.WithdrawCash();
-            atm.EjectCard();     
+            atm.EjectCard();
 
+            //Template Method Pattern
+            Console.WriteLine();
 
+            OrderProcessor online = new OnlineOrderProcessor();
+            online.ProcessOrder();
+
+            Console.WriteLine();
+
+            OrderProcessor inStore = new InStoreOrderProcessor();
+            inStore.ProcessOrder();
 
         }
     }
