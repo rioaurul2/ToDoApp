@@ -1,4 +1,5 @@
 ﻿using DesignPatternsPractice.Behavioral.ChainOfResponsibility;
+using DesignPatternsPractice.Behavioral.Mediator;
 using DesignPatternsPractice.Behavioral.State;
 using DesignPatternsPractice.Behavioral.TemplateMethod;
 using DesignPatternsPractice.Creational.Builder;
@@ -203,6 +204,27 @@ namespace DesignPatternsPractice
             teamLeader.Approve(request1);
             teamLeader.Approve(request2);
             teamLeader.Approve(request3);
+
+            //Mediator pattern
+
+            Console.WriteLine();
+
+            var textBox = new TextBox();
+            var button = new Button(null!);
+            var checkbox = new Checkbox(null!);
+
+            // Se instanțiază mediatorul
+            var mediator = new DialogMediator(button, textBox, checkbox);
+
+            button.SetMediator(mediator);
+            checkbox.SetMediator(mediator);
+
+            // Simulări
+            checkbox.Toggle();   
+            button.Click();      
+
+            checkbox.Toggle();   
+            button.Click();      
 
         }
     }
