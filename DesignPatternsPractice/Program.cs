@@ -2,6 +2,7 @@
 using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
 using DesignPatternsPractice.Structural.Facade;
+using DesignPatternsPractice.Structural.Proxy;
 
 
 namespace DesignPatternsPractice
@@ -149,6 +150,18 @@ namespace DesignPatternsPractice
 
             var booking = new BookingFacade();
             booking.BookTicket("Marin Pop", "Concert Linkin Park");
+
+            //Proxy Pattern
+
+            Console.WriteLine();
+
+            IDocument doc1 = new DocumentProxy("confidential.pdf", "User");
+            doc1.Display(); // Access denied
+
+            IDocument doc2 = new DocumentProxy("confidential.pdf", "Admin");
+            doc2.Display(); // Load + Display
+            doc2.Display(); // Just Display (lazy loading, nu reîncarcă)
+
 
         }
     }
