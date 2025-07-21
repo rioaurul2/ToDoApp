@@ -1,6 +1,7 @@
 ﻿using DesignPatternsPractice.Creational.Builder;
 using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
+using DesignPatternsPractice.Structural.Facade;
 
 
 namespace DesignPatternsPractice
@@ -141,6 +142,13 @@ namespace DesignPatternsPractice
                 .Build();
 
             Console.WriteLine(customPizza);
+
+            //Facade Pattern
+
+            Console.WriteLine();
+
+            var booking = new BookingFacade();
+            booking.BookTicket("Marin Pop", "Concert Linkin Park");
 
         }
     }
