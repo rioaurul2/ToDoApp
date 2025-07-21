@@ -1,4 +1,5 @@
-﻿using DesignPatternsPractice.Creational.Builder;
+﻿using DesignPatternsPractice.Behavioral.State;
+using DesignPatternsPractice.Creational.Builder;
 using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
 using DesignPatternsPractice.Structural.Facade;
@@ -160,7 +161,19 @@ namespace DesignPatternsPractice
 
             IDocument doc2 = new DocumentProxy("confidential.pdf", "Admin");
             doc2.Display(); // Load + Display
-            doc2.Display(); // Just Display (lazy loading, nu reîncarcă)
+            doc2.Display(); // Just Display (lazy loading)
+
+            //State pattern
+
+            Console.WriteLine();
+
+            var atm = new AtmContext();
+
+            atm.WithdrawCash();
+            atm.InsertCard();
+            atm.WithdrawCash();
+            atm.EjectCard();     
+
 
 
         }
