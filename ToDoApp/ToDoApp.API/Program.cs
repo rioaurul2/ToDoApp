@@ -1,4 +1,3 @@
-
 using ToDoApp.API.Middlewares;
 using ToDoApp.Application.Extension;
 using ToDoApp.Infrastructure.Extension;
@@ -16,6 +15,7 @@ namespace ToDoApp.API
             builder.Services.AddTransient<ErrorHandlingMiddleware>();
 
             builder.Services.AddControllers();
+
             // service colection extensions
             builder.Services.AddInfrastructure(builder.Configuration);
             builder.Services.AddApplication();

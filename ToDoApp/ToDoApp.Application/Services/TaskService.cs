@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using ToDoApp.API.DTOs;
 using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Exceptions;
 using ToDoApp.Application.Interfaces;

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading;
-using ToDoApp.API.DTOs;
 using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Interfaces;
 

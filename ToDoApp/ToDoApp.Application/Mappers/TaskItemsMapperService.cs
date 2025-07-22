@@ -1,5 +1,4 @@
-﻿using ToDoApp.API.DTOs;
-using ToDoApp.Application.DTOs;
+﻿using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Interfaces;
 using ToDoApp.Domain.Entities;
 
