@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using ToDoApp.Application.DTOs;
 using ToDoApp.Application.Interfaces;
@@ -48,8 +49,19 @@ namespace ToDoApp.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateTaskItemDto>> CreateTask([FromBody] CreateTaskItemDto createTask, CancellationToken cancellationToken)
+        public async Task<ActionResult<CreateTaskItemDto>> CreateTask([FromBody] CreateTaskItemDto createTask, [FromServices] IValidator<CreateTaskItemDto> validator, CancellationToken cancellationToken)
         {
+            var validationResult = await validator.ValidateAsync(createTask, cancellationToken);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.Select(e => new
+                {
+                    Field = e.PropertyName,
+                    Error = e.ErrorMessage
+                }));
+            }
+
             _logger.LogInformation("Process started: {Method}", nameof(CreateTask));
 
             await _taskService.CreateTaskItem(createTask, cancellationToken);
