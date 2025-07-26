@@ -7,6 +7,7 @@ using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
 using DesignPatternsPractice.Structural.Facade;
 using DesignPatternsPractice.Structural.Proxy;
+using DesignPatternsPractice.Structural.Singleton.Exercitii._1;
 
 
 namespace DesignPatternsPractice
@@ -130,102 +131,113 @@ namespace DesignPatternsPractice
 
             //Builder Pattern
 
-            var builder = new PizzaBuilder();
-            var director = new PizzaDirector();
+            //var builder = new PizzaBuilder();
+            //var director = new PizzaDirector();
 
-            var margherita = director.BuildMargherita(builder);
-            Console.WriteLine(margherita);
+            //var margherita = director.BuildMargherita(builder);
+            //Console.WriteLine(margherita);
 
-            var pepperoni = director.BuildPepperoni(new PizzaBuilder());
-            Console.WriteLine(pepperoni);
+            //var pepperoni = director.BuildPepperoni(new PizzaBuilder());
+            //Console.WriteLine(pepperoni);
 
-            // Sau construiești tu direct:
-            var customPizza = new PizzaBuilder()
-                .WithSize("XXL")
-                .WithCheese()
-                .AddToppings(["bacon", "ceapa"])
-                .Build();
+            //// Sau construiești tu direct:
+            //var customPizza = new PizzaBuilder()
+            //    .WithSize("XXL")
+            //    .WithCheese()
+            //    .AddToppings(["bacon", "ceapa"])
+            //    .Build();
 
-            Console.WriteLine(customPizza);
+            //Console.WriteLine(customPizza);
 
-            //Facade Pattern
+            ////Facade Pattern
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            var booking = new BookingFacade();
-            booking.BookTicket("Marin Pop", "Concert Linkin Park");
+            //var booking = new BookingFacade();
+            //booking.BookTicket("Marin Pop", "Concert Linkin Park");
 
-            //Proxy Pattern
+            ////Proxy Pattern
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            IDocument doc1 = new DocumentProxy("confidential.pdf", "User");
-            doc1.Display(); // Access denied
+            //IDocument doc1 = new DocumentProxy("confidential.pdf", "User");
+            //doc1.Display(); // Access denied
 
-            IDocument doc2 = new DocumentProxy("confidential.pdf", "Admin");
-            doc2.Display(); // Load + Display
-            doc2.Display(); // Just Display (lazy loading)
+            //IDocument doc2 = new DocumentProxy("confidential.pdf", "Admin");
+            //doc2.Display(); // Load + Display
+            //doc2.Display(); // Just Display (lazy loading)
 
-            //State pattern
+            ////State pattern
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            var atm = new AtmContext();
+            //var atm = new AtmContext();
 
-            atm.WithdrawCash();
-            atm.InsertCard();
-            atm.WithdrawCash();
-            atm.EjectCard();
+            //atm.WithdrawCash();
+            //atm.InsertCard();
+            //atm.WithdrawCash();
+            //atm.EjectCard();
 
-            //Template Method Pattern
-            Console.WriteLine();
+            ////Template Method Pattern
+            //Console.WriteLine();
 
-            OrderProcessor online = new OnlineOrderProcessor();
-            online.ProcessOrder();
+            //OrderProcessor online = new OnlineOrderProcessor();
+            //online.ProcessOrder();
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            OrderProcessor inStore = new InStoreOrderProcessor();
-            inStore.ProcessOrder();
+            //OrderProcessor inStore = new InStoreOrderProcessor();
+            //inStore.ProcessOrder();
 
-            //Chain of responsability pattern
+            ////Chain of responsability pattern
 
-            var teamLeader = new TeamLeader();
-            var manager = new Manager();
-            var CORdirector = new Director();
+            //var teamLeader = new TeamLeader();
+            //var manager = new Manager();
+            //var CORdirector = new Director();
 
-            teamLeader.SetNext(manager);
-            manager.SetNext(CORdirector);
+            //teamLeader.SetNext(manager);
+            //manager.SetNext(CORdirector);
 
-            var request1 = new ExpenseRequest("Mouse nou", 300);
-            var request2 = new ExpenseRequest("Licență Visual Studio", 1200);
-            var request3 = new ExpenseRequest("Laptop performant", 8500);
+            //var request1 = new ExpenseRequest("Mouse nou", 300);
+            //var request2 = new ExpenseRequest("Licență Visual Studio", 1200);
+            //var request3 = new ExpenseRequest("Laptop performant", 8500);
 
-            teamLeader.Approve(request1);
-            teamLeader.Approve(request2);
-            teamLeader.Approve(request3);
+            //teamLeader.Approve(request1);
+            //teamLeader.Approve(request2);
+            //teamLeader.Approve(request3);
 
-            //Mediator pattern
+            ////Mediator pattern
 
-            Console.WriteLine();
+            //Console.WriteLine();
 
-            var textBox = new TextBox();
-            var button = new Button(null!);
-            var checkbox = new Checkbox(null!);
+            //var textBox = new TextBox();
+            //var button = new Button(null!);
+            //var checkbox = new Checkbox(null!);
 
-            // Se instanțiază mediatorul
-            var mediator = new DialogMediator(button, textBox, checkbox);
+            //// Se instanțiază mediatorul
+            //var mediator = new DialogMediator(button, textBox, checkbox);
 
-            button.SetMediator(mediator);
-            checkbox.SetMediator(mediator);
+            //button.SetMediator(mediator);
+            //checkbox.SetMediator(mediator);
 
-            // Simulări
-            checkbox.Toggle();   
-            button.Click();      
+            //// Simulări
+            //checkbox.Toggle();   
+            //button.Click();      
 
-            checkbox.Toggle();   
-            button.Click();      
+            //checkbox.Toggle();   
+            //button.Click();      
 
+
+            //Exercitii
+
+            Singleton instance1 = Singleton.Instance;
+            Singleton instance2 = Singleton.Instance;
+
+            // Ambele referințe ar trebui să fie la aceeași instanță
+            Console.WriteLine(ReferenceEquals(instance1, instance2)); // True
+
+            // Apelăm o metodă pe instanța Singleton
+            instance1.DoSomething(); // Singleton method called!
         }
     }
 }
