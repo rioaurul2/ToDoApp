@@ -1,4 +1,4 @@
-﻿namespace DesignPatternsPractice.Structural.Singleton;
+﻿namespace DesignPatternsPractice.Creational.Singleton;
 
 public class Logger
 {
