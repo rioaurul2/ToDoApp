@@ -1,6 +1,6 @@
-﻿using DesignPatternsPractice.Structural.Factory.Interface;
+﻿using DesignPatternsPractice.Creational.Factory.Interface;
 
-namespace DesignPatternsPractice.Structural.Factory;
+namespace DesignPatternsPractice.Creational.Factory;
 
 public static class AnimalFactory
 {

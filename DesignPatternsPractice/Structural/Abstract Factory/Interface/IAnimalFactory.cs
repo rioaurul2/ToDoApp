@@ -1,4 +1,4 @@
-﻿using DesignPatternsPractice.Structural.Factory.Interface;
+﻿using DesignPatternsPractice.Creational.Factory.Interface;
 
 public interface IAnimalFactory
 {

@@ -1,5 +1,5 @@
-﻿using DesignPatternsPractice.Structural.Factory;
-using DesignPatternsPractice.Structural.Factory.Interface;
+﻿using DesignPatternsPractice.Creational.Factory.Interface;
+using DesignPatternsPractice.Structural.Factory;
 
 public class DogFactory : IAnimalFactory
 {
