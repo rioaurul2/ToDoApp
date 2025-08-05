@@ -5,6 +5,8 @@ using DesignPatternsPractice.Behavioral.TemplateMethod;
 using DesignPatternsPractice.Creational.Builder;
 using DesignPatternsPractice.Creational.Factory.Exercitii._1;
 using DesignPatternsPractice.Creational.Factory.Exercitii._2;
+using DesignPatternsPractice.Creational.Factory.Exercitii._3;
+using DesignPatternsPractice.Creational.Factory.Exercitii._3.Interface;
 using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
 using DesignPatternsPractice.Structural.Facade;
@@ -244,6 +246,18 @@ namespace DesignPatternsPractice
             var car = VehicleParkFactory.CreateVehicle(VehicleType.Car);
 
             car.Drive();
+
+            IPaymentProcessor factory = new PaymentProcessor() { };
+
+            try
+            {
+                IPayment payment = factory.PayMethod(PaymentType.Card);
+                payment.Pay();
+            }
+            catch (NotSupportedException ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
