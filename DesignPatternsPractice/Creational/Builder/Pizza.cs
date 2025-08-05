@@ -1,10 +1,8 @@
-﻿using DesignPatternsPractice.Structural.Factory;
-
-namespace DesignPatternsPractice.Creational.Builder;
+﻿namespace DesignPatternsPractice.Creational.Builder;
 
 public class Pizza
 {
-    public string Size { get; set; }
+    public string? Size { get; set; }
     public bool HasCheese { get; set; }
     public List<string> Toppings { get; set; } = new();
 

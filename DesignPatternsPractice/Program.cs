@@ -3,6 +3,8 @@ using DesignPatternsPractice.Behavioral.Mediator;
 using DesignPatternsPractice.Behavioral.State;
 using DesignPatternsPractice.Behavioral.TemplateMethod;
 using DesignPatternsPractice.Creational.Builder;
+using DesignPatternsPractice.Creational.Factory.Exercitii._1;
+using DesignPatternsPractice.Creational.Factory.Exercitii._2;
 using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
 using DesignPatternsPractice.Structural.Facade;
@@ -228,16 +230,20 @@ namespace DesignPatternsPractice
             //button.Click();      
 
 
-            //Exercitii
+            ////Exercitii
 
-            Singleton instance1 = Singleton.Instance;
-            Singleton instance2 = Singleton.Instance;
+            //Singleton instance1 = Singleton.Instance;
+            //Singleton instance2 = Singleton.Instance;
 
-            // Ambele referințe ar trebui să fie la aceeași instanță
-            Console.WriteLine(ReferenceEquals(instance1, instance2)); // True
+            //// Ambele referințe ar trebui să fie la aceeași instanță
+            //Console.WriteLine(ReferenceEquals(instance1, instance2)); // True
 
-            // Apelăm o metodă pe instanța Singleton
-            instance1.DoSomething(); // Singleton method called!
+            //// Apelăm o metodă pe instanța Singleton
+            //instance1.DoSomething(); // Singleton method called!
+
+            var car = VehicleParkFactory.CreateVehicle(VehicleType.Car);
+
+            car.Drive();
         }
     }
 }
