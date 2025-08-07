@@ -9,6 +9,7 @@ using DesignPatternsPractice.Creational.Factory.Exercitii._3;
 using DesignPatternsPractice.Creational.Factory.Exercitii._3.Interface;
 using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
+using DesignPatternsPractice.Structural.Decorator.Exercises._1.Interface;
 using DesignPatternsPractice.Structural.Facade;
 using DesignPatternsPractice.Structural.Proxy;
 using DesignPatternsPractice.Structural.Singleton.Exercitii._1;
@@ -243,21 +244,40 @@ namespace DesignPatternsPractice
             //// Apelăm o metodă pe instanța Singleton
             //instance1.DoSomething(); // Singleton method called!
 
-            var car = VehicleParkFactory.CreateVehicle(VehicleType.Car);
+            //var car = VehicleParkFactory.CreateVehicle(VehicleType.Car);
 
-            car.Drive();
+            //car.Drive();
 
-            IPaymentProcessor factory = new PaymentProcessor() { };
+            //IPaymentProcessor factory = new PaymentProcessor() { };
 
-            try
+            //try
+            //{
+            //    IPayment payment = factory.PayMethod(PaymentType.Card);
+            //    payment.Pay();
+            //}
+            //catch (NotSupportedException ex) 
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
+            ////////////////////////////////////////
+
+            IBeverage coffee = new SimpleCoffee();
+            Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
+
+            coffee = new MilkDecorator(coffee);
+            Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
+
+            if (false)
             {
-                IPayment payment = factory.PayMethod(PaymentType.Card);
-                payment.Pay();
+                coffee = new WhippedCreamDecorator(coffee);
+                Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
             }
-            catch (NotSupportedException ex) 
-            {
-                Console.WriteLine(ex.Message);
-            }
+
+            coffee = new ChocolateDecorator(coffee);
+            Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
+
+            ///////////////////////////////////////
         }
     }
 }
