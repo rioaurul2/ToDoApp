@@ -10,6 +10,9 @@ using DesignPatternsPractice.Creational.Factory.Exercitii._3.Interface;
 using DesignPatternsPractice.Structural.Adapter;
 using DesignPatternsPractice.Structural.Decorator;
 using DesignPatternsPractice.Structural.Decorator.Exercises._1.Interface;
+using DesignPatternsPractice.Structural.Decorator.Exercises._2;
+using DesignPatternsPractice.Structural.Decorator.Exercises._2.Decorator;
+using DesignPatternsPractice.Structural.Decorator.Exercises._2.Interface;
 using DesignPatternsPractice.Structural.Facade;
 using DesignPatternsPractice.Structural.Proxy;
 using DesignPatternsPractice.Structural.Singleton.Exercitii._1;
@@ -262,22 +265,31 @@ namespace DesignPatternsPractice
 
             ////////////////////////////////////////
 
-            IBeverage coffee = new SimpleCoffee();
-            Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
+            //IBeverage coffee = new SimpleCoffee();
+            //Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
 
-            coffee = new MilkDecorator(coffee);
-            Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
+            //coffee = new MilkDecorator(coffee);
+            //Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
 
-            if (false)
-            {
-                coffee = new WhippedCreamDecorator(coffee);
-                Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
-            }
+            //if (false)
+            //{
+            //    coffee = new WhippedCreamDecorator(coffee);
+            //    Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
+            //}
 
-            coffee = new ChocolateDecorator(coffee);
-            Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
+            //coffee = new ChocolateDecorator(coffee);
+            //Console.WriteLine($"{coffee.GetDescription()} - {coffee.GetCost()} RON");
 
             ///////////////////////////////////////
+
+            IText text = new SimpleText();
+
+            text = new NameDecorator(text);
+            text = new FeelingDecorator(text);
+
+            Console.WriteLine(text.GetText());
+
+            //////////////////////////////////////
         }
     }
 }
